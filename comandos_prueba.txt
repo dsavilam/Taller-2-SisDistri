@@ -14,25 +14,35 @@ python cliente.py --host 127.0.0.1 --port 5000
 
 Para la sustentacion en cada VM:
 
+VM DANIEL: 10.43.101.229
+
 Ejemplos de IP temporales (Reemplazamos):
 
-Operador 1: 10.43.102.161:6001
+Operador 1 (VM SANTIAGO): 10.43.102.163:6001
 
-Operador 2: 10.43.102.163:6002
+Operador 2 (VM ANDRES): 10.43.103.42:6002
 
-Coordinador: 10.43.102.170:5000
+Coordinador:(VM DANIEL) 10.43.101.229:5000
 
-Cliente: En el cuarto pc
+Cliente (VM AMELIE)
 
+//Antes de nada:
+sudo apt install grpc
+python3 -m pip install --user grpcio grpcio-tools protobuf
+
+//VM SANTIAGO
 VM 1:
-Operador 1: python operador.py --host 0.0.0.0 --port 6001 --name operador-1 --delay 0.3
+Operador 1: python3 operador.py --host 0.0.0.0 --port 6001 --name operador-1 --delay 0.3
 
+//VM ANDRES
 VM 2:
-Operador 2: python operador.py --host 0.0.0.0 --port 6002 --name operador-2 --delay 0.3
+Operador 2: python3 operador.py --host 0.0.0.0 --port 6002 --name operador-2 --delay 0.3
 
+//VM DANIEL
 VM 3:
-Coordinador: python servidorCalculo.py --host 0.0.0.0 --port 5000 --operadores 10.43.102.161:6001 10.43.102.163:6002
+Coordinador: python3 servidorCalculo.py --host 0.0.0.0 --port 5000 --operadores 10.43.102.163:6001 10.43.103.42:6002
 
+//VM AMELIE
 VM 4:
-Cliente: python cliente.py --host 10.43.102.170 --port 5000
+Cliente: python3 cliente.py --host 10.43.101.229 --port 5000
 
