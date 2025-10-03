@@ -1,0 +1,38 @@
+---------------------------------------------------------------------------------------------------
+Para probar todo en UN SOLO pc:
+
+python operador.py --host 0.0.0.0 --port 6001 --name operador-1 --delay 0.3
+
+python operador.py --host 0.0.0.0 --port 6002 --name operador-2 --delay 0.3
+
+python servidorCalculo.py --host 0.0.0.0 --port 5000 --operadores 127.0.0.1:6001 127.0.0.1:6002
+
+python cliente.py --host 127.0.0.1 --port 5000
+
+
+----------------------------------------------------------------------------------------------------
+
+Para la sustentacion en cada VM:
+
+Ejemplos de IP temporales (Reemplazamos):
+
+Operador 1: 10.43.102.161:6001
+
+Operador 2: 10.43.102.163:6002
+
+Coordinador: 10.43.102.170:5000
+
+Cliente: En el cuarto pc
+
+VM 1:
+Operador 1: python operador.py --host 0.0.0.0 --port 6001 --name operador-1 --delay 0.3
+
+VM 2:
+Operador 2: python operador.py --host 0.0.0.0 --port 6002 --name operador-2 --delay 0.3
+
+VM 3:
+Coordinador: python servidorCalculo.py --host 0.0.0.0 --port 5000 --operadores 10.43.102.161:6001 10.43.102.163:6002
+
+VM 4:
+Cliente: python cliente.py --host 10.43.102.170 --port 5000
+

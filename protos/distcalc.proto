@@ -1,0 +1,26 @@
+syntax = "proto3";
+package distcalc;
+
+message SumArraysRequest {
+  repeated int32 a = 1;
+  repeated int32 b = 2;
+}
+
+message OperatorInfo {
+  string nombre = 1;
+  string host   = 2;
+  int32  puerto = 3;
+  bool   vivo   = 4;
+}
+
+message SumArraysReply {
+  repeated int32 result = 1;
+  bool ok               = 2;
+  string error          = 3;
+  double elapsed        = 4;
+  repeated OperatorInfo operadores = 5;
+}
+
+service CoordinatorService {
+  rpc SumArrays (SumArraysRequest) returns (SumArraysReply);
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package calc;
+
+service CalcService {
+  rpc Add (BinaryOpRequest) returns (OpResponse) {}
+  rpc Sub (BinaryOpRequest) returns (OpResponse) {}
+  rpc Mul (BinaryOpRequest) returns (OpResponse) {}
+  rpc Div (BinaryOpRequest) returns (OpResponse) {}
+}
+
+message BinaryOpRequest {
+  double a = 1;
+  double b = 2;
+}
+
+message OpResponse {
+  double result = 1;
+  bool ok = 2;        // true si la operación fue válida
+  string error = 3;   // mensaje de error (ej: división por cero)
+}
